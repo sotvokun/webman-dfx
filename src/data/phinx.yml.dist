@@ -1,0 +1,10 @@
+paths:
+    migrations: '$migrationsPath'
+    seeds: '$seedsPath'
+
+environments:
+    default_migration_table: $migrationTable
+    default_environment: $defaultEnvironment
+$environments
+
+version_order: creation
