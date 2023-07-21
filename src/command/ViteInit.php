@@ -57,13 +57,14 @@ class ViteInit extends Command
 
     private function addGitIgnore()
     {
+        $gitignoreTemplateFilePath = dfx_path() . '/src/data/gitignore.dist';
         $gitignoreFilePath = base_path() . '/.gitignore';
         if (!file_exists($gitignoreFilePath)) {
             return;
         }
 
         $contents = file_get_contents($gitignoreFilePath);
-        $contents .= "\n" . '/node_modules';
+        $contents .= "\n" . file_get_contents($gitignoreTemplateFilePath);
 
         if (file_put_contents($gitignoreFilePath, $contents) === false) {
             throw new RuntimeException('Failed to write file ' . $gitignoreFilePath);
