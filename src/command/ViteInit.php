@@ -31,8 +31,6 @@ class ViteInit extends Command
         $viteDist = base_path() . DIRECTORY_SEPARATOR . self::VITE_FILE;
         $nodeDist = base_path() . DIRECTORY_SEPARATOR . self::NODE_FILE;
 
-        var_dump($nodeDist);
-
         if (!file_exists($viteDist)) {
             $contents = file_get_contents($viteTemp);
             $classes = [
@@ -51,6 +49,41 @@ class ViteInit extends Command
             }
         }
 
+        $this->addGitIgnore();
+        $this->addViteFunction();
+
         return 0;
+    }
+
+    private function addGitIgnore()
+    {
+        $gitignoreFilePath = base_path() . '/.gitignore';
+        if (!file_exists($gitignoreFilePath)) {
+            return;
+        }
+
+        $contents = file_get_contents($gitignoreFilePath);
+        $contents .= "\n" . '/node_modules';
+
+        if (file_put_contents($gitignoreFilePath, $contents) === false) {
+            throw new RuntimeException('Failed to write file ' . $gitignoreFilePath);
+        }
+    }
+
+    private function addViteFunction()
+    {
+        $functionsFilePath = base_path() . '/app/functions.php';
+        $functionsTemplateFilePath = dfx_path() . '/src/data/functions.php.dist';
+
+        if (!file_exists($functionsFilePath)) {
+            return;
+        }
+
+        $contents = file_get_contents($functionsFilePath);
+        $contents .= "\n" . file_get_contents($functionsTemplateFilePath);
+
+        if (file_put_contents($functionsFilePath, $contents) === false) {
+            throw new RuntimeException('Failed to write file ' . $functionsFilePath);
+        }
     }
 }
