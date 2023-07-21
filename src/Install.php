@@ -1,5 +1,5 @@
 <?php
-namespace Sotvokun\WebmanDfx;
+namespace Sotvokun\Webman\Dfx;
 
 class Install
 {
@@ -8,9 +8,9 @@ class Install
     /**
      * @var array
      */
-    protected static $pathRelation = array (
-  'config/plugin/sotvokun/webman-dfx' => 'config/plugin/sotvokun/webman-dfx',
-);
+    protected static $pathRelation = [
+        'config/plugin/sotvokun/webman-dfx' => 'config/plugin/sotvokun/webman-dfx',
+    ];
 
     /**
      * Install
@@ -70,5 +70,5 @@ class Install
             remove_dir($path);
         }
     }
-    
+
 }

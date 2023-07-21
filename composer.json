@@ -4,6 +4,7 @@
   "license": "MIT",
   "description": "Webman plugin sotvokun/webman-dfx",
   "require": {
+    "webman/console": "^1.2",
     "robmorgan/phinx": "^0.13.4",
     "symfony/yaml": "^6.3"
   },
