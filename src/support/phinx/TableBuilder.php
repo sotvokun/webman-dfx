@@ -113,7 +113,7 @@ class TableBuilder
      * `disabled_at` DATETIME DEFAULT NULL
      * ```
      */
-    public function setDisable(string $columnName): TableBuilder
+    public function setDisable(string $columnName = 'disabled_at'): TableBuilder
     {
         $this->table->addColumn($columnName, 'datetime', [
             'null' => true
