@@ -35,7 +35,7 @@ class Dispatcher
         } catch (RpcException $e) {
             return $e->toResponse($rpcRequest->id ?? null)->toJsonResponse();
         } catch (\Exception $e) {
-            return Response::error(Error::INVALID_REQUEST, $e->getMessage(), $e, null)->toJsonResponse();
+            return Response::error(Error::INVALID_REQUEST, $e->getMessage(), $e, $rpcRequest?->id ?? null)->toJsonResponse();
         }
     }
 

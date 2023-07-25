@@ -9,7 +9,7 @@ class Response
     public readonly string $jsonrpc;
     protected mixed $_result;
     protected ?Error $_error;
-    public readonly string|int $id;
+    public readonly string|int|null $id;
 
     private function __construct(string|int|null $id)
     {
